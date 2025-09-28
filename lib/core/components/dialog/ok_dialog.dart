@@ -85,7 +85,7 @@ class OkDialog extends StatelessWidget {
                     },
                     loading: false,
                     text:okLabel?? Strings.of(context)
-                        .yes_label,
+                        .businesses_label,
                     width: 100,
                     height: 35,
                   ),

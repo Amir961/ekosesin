@@ -22,6 +22,7 @@ class MyColors {
   static const Color darkPrimaryColor = Color(0xFF297EEF);
   static const Color darkDividerColor = Color(0xFF707070);
   static const Color darkBackgroundColor = Color(0xFF17191E);
+  static const Color darkScaffoldBackgroundColor = Color(0xFF17191E);
   static const Color darkDisableColor = Color(0xff707070);
   static const Color darkCardColor = Color(0xFF272A32);
   static const Color darkShadowColor = Color(0x29000000);

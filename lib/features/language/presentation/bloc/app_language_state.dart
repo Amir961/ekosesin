@@ -26,19 +26,21 @@ class AppLanguageState extends Equatable {
       //listLanguage;
 
   [
-   AppLanguageModel.fromTag('fa','Farsi','فارسی'),
-   AppLanguageModel.fromTag('en','English','English'),
+
+   AppLanguageModel.fromTag('en','English','English',MediaRes.en),
+   AppLanguageModel.fromTag('tr','Türkçe','Türkçe',MediaRes.tr),
+    AppLanguageModel.fromTag('fa','Farsi','فارسی',MediaRes.fa),
   ];
 }
 
 class LanguageInitial extends AppLanguageState {
-  LanguageInitial(
+  const LanguageInitial(
       {required AppLanguage language, })
       : super(language: language, );
 }
 
 class LanguageLoadingState extends AppLanguageState {
-  LanguageLoadingState(
+  const LanguageLoadingState(
       {required List<AppLanguage> list,
       required AppLanguage language,
       })
@@ -49,7 +51,7 @@ class LanguageLoadingState extends AppLanguageState {
 }
 
 class LanguageSuccessState extends AppLanguageState {
-  LanguageSuccessState(
+  const LanguageSuccessState(
       {required List<AppLanguage> list,
       required AppLanguage language,
       })
@@ -60,7 +62,7 @@ class LanguageSuccessState extends AppLanguageState {
 }
 
 class ChangeSuccessState extends AppLanguageState {
-  ChangeSuccessState(
+  const ChangeSuccessState(
       {required List<AppLanguage> list,
       required AppLanguage language,
       })
@@ -71,7 +73,7 @@ class ChangeSuccessState extends AppLanguageState {
 }
 
 class ListStringSuccessState extends AppLanguageState {
-  ListStringSuccessState(
+  const ListStringSuccessState(
       {required List<AppLanguage> list,
       required AppLanguage language,
       })
@@ -103,13 +105,13 @@ class LanguageFailureState extends AppLanguageState {
 }
 
 class LanguageUnAuthorizeState extends AppLanguageState {
-  LanguageUnAuthorizeState(
+  const LanguageUnAuthorizeState(
       {required AppLanguage language, })
       : super(language: language, );
 }
 
 class LanguageNoNetFailureState extends AppLanguageState {
-  LanguageNoNetFailureState(
+  const LanguageNoNetFailureState(
       {required List<AppLanguage> list,
       required AppLanguage language,
       })

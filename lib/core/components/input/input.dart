@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:rxdart/rxdart.dart';
 
+import '../../res/constant.dart';
 import '../../utils/assets.dart';
 import '../../utils/values.dart';
 import '../inherited/tablet_checker/app_provider.dart';
@@ -35,6 +36,7 @@ class Input extends StatefulWidget {
   final TextAlign textAlign;
   final TextAlignVertical? textAlignVertical;
   final Widget? perfix;
+  final Widget? perfixIcon;
   final TextCapitalization? textCapitalization;
   final bool isLock;
   final List<TextInputFormatter>? inputFormatters;
@@ -46,6 +48,7 @@ class Input extends StatefulWidget {
     this.isLock = false,
     this.textCapitalization,
     this.perfix,
+    this.perfixIcon,
     this.errorColor,
     this.borderColor,
     this.hintText,
@@ -106,11 +109,13 @@ class _InputState extends State<Input> {
         (isDark ? textTheme.bodyLarge!.color! : MyColors.cardColor);
     return SizedBox(
       width: widget.width,
+      height: 40,
       child: StreamBuilder<bool>(
           stream: _showPassController.stream,
           builder: (context, snapshot) {
             _showPass = snapshot.data ?? _showPass;
             return TextField(
+
               readOnly: widget.isLock,
               textCapitalization:
                   widget.textCapitalization ?? TextCapitalization.none,
@@ -139,6 +144,7 @@ class _InputState extends State<Input> {
               },
               expands: widget.expands,
               textAlign: widget.textAlign,
+
               maxLength: widget.maxLength,
               maxLines: widget.maxLines,
               minLines: widget.minLines,
@@ -150,7 +156,11 @@ class _InputState extends State<Input> {
                 fontWeight: widget.fontWeight,
               ),
               decoration: InputDecoration(
+                fillColor: Theme.of(context).scaffoldBackgroundColor,
+                filled: true,
+
                 prefix: widget.perfix,
+                prefixIcon: widget.perfixIcon,
                 suffixIcon: widget.isPassword
                     ? GestureDetector(
                         behavior: HitTestBehavior.opaque,
@@ -164,11 +174,12 @@ class _InputState extends State<Input> {
                 isDense: true,
                 hintText: widget.hintText,
                 counterText: '',
+
                 contentPadding: EdgeInsetsDirectional.only(
-                  start: 10,
-                  end: widget.isPassword ? 0 : 10,
-                  top: 15,
-                  bottom: 15,
+                  start: 0,
+                  end:  0 ,
+                  top: 0,
+                  bottom: 20,
                 ),
                 hintStyle: TextStyle(
                   color: widget.hasError ? errorColor : hintColor,
@@ -183,9 +194,9 @@ class _InputState extends State<Input> {
                         : widget.hasError
                             ? errorColor
                             : borderColor,
-                    width: 1.5,
+                    width: 1,
                   ),
-                  borderRadius: BorderRadius.circular(borderRadius),
+                  borderRadius: BorderRadius.circular(radius),
                 ),
                 border: OutlineInputBorder(
                   borderSide: BorderSide(
@@ -194,9 +205,9 @@ class _InputState extends State<Input> {
                         : widget.hasError
                             ? errorColor
                             : borderColor,
-                    width: 1.5,
+                    width: 1,
                   ),
-                  borderRadius: BorderRadius.circular(borderRadius),
+                  borderRadius: BorderRadius.circular(radius),
                 ),
                 alignLabelWithHint: true,
                 focusedBorder: OutlineInputBorder(
@@ -206,9 +217,9 @@ class _InputState extends State<Input> {
                         : widget.hasError
                             ? errorColor
                             : focusColor,
-                    width: 1.5,
+                    width: 1,
                   ),
-                  borderRadius: BorderRadius.circular(borderRadius),
+                  borderRadius: BorderRadius.circular(radius),
                 ),
               ),
             );
@@ -218,5 +229,5 @@ class _InputState extends State<Input> {
 
   bool get hasFocus => widget.focusNode?.hasFocus ?? false;
 
-  double get borderRadius => 8;
+
 }

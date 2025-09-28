@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:fare/features/auth/bloc/auth_bloc.dart';
+import 'package:fare/features/home/bloc/category_bloc.dart';
 import 'package:fare/features/language/utils/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -13,13 +14,15 @@ import 'package:toastification/toastification.dart';
 import 'core/components/inherited/tablet_checker/app_provider.dart';
 import 'core/layouts/dismiss_keyboard_layout.dart';
 import 'core/layouts/language_widget_builder.dart';
-import 'core/services/config.dart';
+
+import 'core/res/constant.dart';
 import 'core/services/router.dart';
 import 'core/utils/assets.dart';
 import 'core/utils/values.dart';
+import 'features/home/bloc/city_bloc.dart';
 import 'features/home/cubit/home_cubit.dart';
 import 'features/language/presentation/bloc/app_language_bloc.dart';
-import 'features/salon/bloc/salon_bloc.dart';
+
 import 'features/theme/presentation/bloc/app_theme_bloc.dart';
 import 'features/theme/presentation/widget/theme_widget_builder.dart';
 import 'injection_container.dart';
@@ -59,9 +62,16 @@ void main() async{
           create: (context) => sl<HomeCubit>(),
         ),
 
-        BlocProvider<SalonBloc>(
-          create: (context) => sl<SalonBloc>(),
+        BlocProvider<CityBloc>(
+          create: (context) => sl<CityBloc>(),
         ),
+
+        BlocProvider<CategoryBloc>(
+          create: (context) => sl<CategoryBloc>(),
+        ),
+
+
+
 
 
 
@@ -73,14 +83,15 @@ void main() async{
           return
             ThemeWidgetBuilder(
               builder: (themeState) {
-                final clientNotifier = GraphQLConfig.getClientNotifier(path: "");
 
                 return ToastificationWrapper(
 
                   child: MaterialApp.router(
 
+                    themeMode: ThemeMode.dark,
 
-                    title: 'Imazh',
+
+                    title: 'Ekosesin',
                     // key: globalNavigatorKey,
                     // locale: Locale(languageCode),
                     locale:  Locale(languageCode),
@@ -91,12 +102,13 @@ void main() async{
                     supportedLocales: AppLocalizations.supportedLocales,
 
                     localeResolutionCallback: (locale, supportedLocales) {
-                      // final defaultLanguage = languageState.language;
-                      //  final defaultLanguage = 'fa';
+                       final defaultLanguage = languageState.language.language;
+                       globalLanguageId= defaultLanguage;
+                       // final defaultLanguage = 'tr';
                       debugPrint('defaultLanguage: $languageCode : ${themeState.theme.theme}');
 
-                      Intl.defaultLocale = languageCode;
-                      return Locale(languageCode);
+                      Intl.defaultLocale = defaultLanguage;
+                      return Locale(defaultLanguage);
                     },
                     debugShowCheckedModeBanner: false,
                     theme: ThemeData(
@@ -105,7 +117,10 @@ void main() async{
                           ? Fonts.iranSans
                           : Fonts.poppins,
                       brightness: Brightness.light,
+
                       primaryColor: MyColors.primaryColor,
+
+                      canvasColor: Colors.white,
                       dividerColor: MyColors.dividerColor,
                       focusColor: MyColors.primaryColor,
                       hintColor: MyColors.hintTextColor,
@@ -133,7 +148,8 @@ void main() async{
                       ),
                       textTheme: const TextTheme(
                         bodyLarge: TextStyle(
-                          color: MyColors.textColor,
+                         // color: MyColors.textColor,
+                          color: Colors.black,
                         ),
                         bodyMedium: TextStyle(
                           color: MyColors.textColor2,
@@ -188,7 +204,8 @@ void main() async{
                       ),
                       textTheme: const TextTheme(
                         bodyLarge: TextStyle(
-                          color: MyColors.darkTextColor,
+                         // color: MyColors.darkTextColor,
+                          color: Colors.white,
                         ),
                         bodyMedium: TextStyle(color: MyColors.darkTextColor2),
                         titleLarge: TextStyle(
@@ -204,6 +221,7 @@ void main() async{
                         headlineSmall: TextStyle(
                           color: MyColors.darkWeightChangeColor,
                         ),
+
                       ),
                     ),
 

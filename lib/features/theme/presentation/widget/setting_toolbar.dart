@@ -93,7 +93,7 @@ class SettingToolBarWidget extends StatelessWidget {
         alignment: AlignmentDirectional.bottomEnd,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Image.asset(MediaRes.logo,),
+          child: Image.asset(MediaRes.house,),
          //  child: InkWell(
          //      onTap: (){},
          //      child: const Icon(Icomoon.plus)),

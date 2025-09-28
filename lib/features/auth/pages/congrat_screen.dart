@@ -40,7 +40,7 @@ class _CongrateScreenState extends State<CongrateScreen> {
           width:  MediaQuery.of(context).size.width,
           color: MyColors.primaryColor,
           alignment:Alignment.center,
-          child: Image.asset(MediaRes.logo)
+          child: Image.asset(MediaRes.house)
 
 
         )

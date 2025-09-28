@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:fare/core/res/media_res.dart';
 
 import '../../../../core/usecases/usecases.dart';
 import '../../../../core/utils/language_helper.dart';

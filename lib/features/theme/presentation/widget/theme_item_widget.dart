@@ -98,11 +98,11 @@ class ThemeItemWidget extends StatelessWidget {
   String _getName(BuildContext context) {
     switch (theme.theme) {
       case ThemeMode.system:
-        return Strings.of(context).system_default_label;
+        return Strings.of(context).businesses_label;
       case ThemeMode.light:
-        return Strings.of(context).light_label;
+        return Strings.of(context).businesses_label;
       case ThemeMode.dark:
-        return Strings.of(context).dark_label;
+        return Strings.of(context).businesses_label;
     }
   }
 }

@@ -44,7 +44,7 @@ class AppProviderState extends State<AppProvider> {
   bool get isTablet => false;
   // !(MediaQuery.of(context).size.shortestSide < 600);
   bool get isDark => Theme.of(context).brightness == Brightness.dark;
-  double getFontSize(double value) => getLocale == 'fa' ? value - 2 : value;
+  double getFontSize(double value) => getLocale == 'fa' ? value - 2 : value-2;
   String get getFontFamily =>
       getLocale == 'fa' ? Fonts.iranSans : Fonts.poppins;
 

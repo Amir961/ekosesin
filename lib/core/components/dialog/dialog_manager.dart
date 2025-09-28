@@ -1,9 +1,11 @@
 
-import 'package:fare/features/salon/models/city_models.dart';
+
+import 'package:fare/core/components/dialog/show_error_dialog_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../bottom_sheet/bottom_sheet_filter_salon.dart';
+
+import '../bottom_sheet/select_category_sheet_widget.dart';
 import 'no_network_error_dialog_widget.dart';
 import 'ok_dialog.dart';
 import 'yes_no_dialog.dart';
@@ -12,6 +14,9 @@ abstract class DialogManager {
   Future<void> showAddSkillDialog({
     required BuildContext myContext,
     required Function() submit,
+  });
+
+  Future<void> showSelectCategorySheet({required BuildContext context,
   });
 
 
@@ -54,12 +59,12 @@ abstract class DialogManager {
     required Function() onTryAgainClick,
   });
 
-  Future<void> showFilterSalonDialog({
-    required BuildContext myContext,
-    required CityModels? source,
-    required CityModels? destination
-
+  Future<void> showErrorDialog({
+    required BuildContext context,
+    required String? message,
+    required Function() onTryAgainClick,
   });
+
 
 
 }
@@ -70,31 +75,63 @@ class DialogManagerImpl implements DialogManager {
   static bool _isShowOkDialog = false;
   static bool _isShowAddSkillDialog = false;
   static bool _isShowNetworkDialog = false;
-  static bool _showFilterSalon = false;
+  static bool _isShowErrorDialog = false;
+  static bool _isShowSelectCategorySheet = false;
+
 
   @override
-  Future<void> showFilterSalonDialog({required BuildContext myContext,
-    required CityModels? source,
-    required CityModels? destination})
-  async {
-    if (_showFilterSalon) return;
-    _showFilterSalon = true;
+  Future<void> showSelectCategorySheet({required BuildContext context}) async {
+    if (_isShowSelectCategorySheet) return;
+    _isShowSelectCategorySheet = true;
     await showModalBottomSheet(
-      backgroundColor: Theme.of(myContext).cardColor,
+
+      backgroundColor: Theme
+          .of(context)
+          .cardColor,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
       ),
-      context: myContext,
+      context: context,
+      isDismissible: false,   // جلوگیری از تَپ بیرون
+      enableDrag: false,
       isScrollControlled: true,
       builder: (context) {
         return Padding(
-          padding: MediaQuery.of(context).viewInsets,
+          padding: MediaQuery
+              .of(context)
+              .viewInsets,
 
-             child:  BottomSheetFilterSalon( myContext: myContext, source: source, destination: destination,  ),
+          child: SelectCategorySheetWidget(context: context,),
         );
       },
     );
-    _showFilterSalon = false;
+    _isShowSelectCategorySheet = false;
+  }
+
+
+
+
+  @override
+  Future<void> showErrorDialog({
+    required String? message,
+    required BuildContext context,
+    required Function() onTryAgainClick,
+  }) async {
+    if (_isShowErrorDialog) return;
+    _isShowErrorDialog = true;
+    await showDialog(
+      context: context,
+      barrierColor: Colors.transparent,
+      barrierDismissible: false,
+      useSafeArea: false,
+      builder: (context) {
+        return AnnotatedRegion<SystemUiOverlayStyle>(
+          value: SystemUiOverlayStyle.light,
+          child: ShowErrorDialogWidget(onTryAgainClick: onTryAgainClick,message: message ,),
+        );
+      },
+    );
+    _isShowErrorDialog = false;
   }
 
 

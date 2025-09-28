@@ -24,7 +24,7 @@ class ThemePage extends StatelessWidget {
               padding: const EdgeInsets.only(top: 60.0),
               child: const ThemeListWidget(),
             ),
-            SettingToolBarWidget(title: Strings.of(context).theme_label),
+            SettingToolBarWidget(title: Strings.of(context).businesses_label),
           ],
         ),
       ),

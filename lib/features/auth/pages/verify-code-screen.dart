@@ -106,7 +106,7 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
                   margin: EdgeInsets.only(top: sols+23),
 
                   alignment:Alignment.bottomCenter,
-                  child:  Image.asset(MediaRes.logo),
+                  child:  Image.asset(MediaRes.house),
 
                 ),
                 Expanded(flex: 2,child: SingleChildScrollView(
@@ -234,7 +234,7 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
               backgroundColor: Colors.grey[100],
               //overlayState: globalNavigatorKey.currentState?.overlay,
               autoCloseDuration: const Duration(seconds: 3),
-              title: MyText(text:Strings.of(context).failed_label,color: Colors.black87,fontWeight: FontWeight.bold,),
+              title: MyText(text:Strings.of(context).businesses_label,color: Colors.black87,fontWeight: FontWeight.bold,),
               description: MyText(text:state.messageLogin,color: Colors.black87,)
           );
 
@@ -281,7 +281,7 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
               backgroundColor: Colors.grey[100],
               //overlayState: globalNavigatorKey.currentState?.overlay,
               autoCloseDuration: const Duration(seconds: 3),
-              title: MyText(text:Strings.of(context).failed_label,color: Colors.black87,fontWeight: FontWeight.bold,),
+              title: MyText(text:Strings.of(context).businesses_label,color: Colors.black87,fontWeight: FontWeight.bold,),
               description: MyText(text:state.messageLogin,color: Colors.black87,)
           );
         }

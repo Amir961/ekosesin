@@ -83,7 +83,7 @@ class YesNoDialog extends StatelessWidget {
                         },
                         loading: false,
                         text: yesLabel?? Strings.of(context)
-                            .yes_label,
+                            .businesses_label,
                         width: 100,
                         height: 35,
                       ),
@@ -102,7 +102,7 @@ class YesNoDialog extends StatelessWidget {
                         },
                         loading: false,
                         text:noLabel?? Strings.of(context)
-                            .no_label,
+                            .businesses_label,
                         width: 100,
                         height: 35,
                       ),

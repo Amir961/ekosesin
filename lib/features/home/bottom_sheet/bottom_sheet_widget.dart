@@ -28,7 +28,7 @@ class _ButtomSheetWidgetState extends State<ButtomSheetWidget> {
     return
       SizedBox(
         width: double.infinity,
-        height: 90,
+        height: 70,
         child: Stack(
         children: [
           Positioned(

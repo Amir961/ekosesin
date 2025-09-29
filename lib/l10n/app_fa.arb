@@ -18,7 +18,9 @@
     "price_lowest_label" : "قیمت (کمترین)",
     "price_highest_label" : "قیمت (بیشترین)",
     "description_sorted" : "خرید و فروش همه چیز در قبرس شمالی",
-    "retry_label" : "دوباره"
+    "retry_label" : "دوباره",
+    "there_are_no_more_items_display": "آیتم بیشتری برای نمایش وجود ندارد."
+
 
 
 

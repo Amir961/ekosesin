@@ -18,6 +18,8 @@
     "price_lowest_label" : "Price (Lowest)",
     "price_highest_label" : "Price (Highest)",
     "description_sorted" : "EkoSesin'de Satılabilen Her Şey KKTC",
-    "retry_label" : "Retry"
+    "retry_label" : "Retry",
+    "there_are_no_more_items_display": "There are no more items to display."
+
 }
 

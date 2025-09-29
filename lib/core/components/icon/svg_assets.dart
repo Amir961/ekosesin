@@ -18,8 +18,8 @@ class SvgAssets extends StatelessWidget {
     return  SvgPicture.asset(
       address,
       width: width,
-      height: 64,
-      colorFilter: ColorFilter.mode(Colors.white, BlendMode.srcIn),
+      height: height,
+      colorFilter: ColorFilter.mode(iconColor, BlendMode.srcIn),
     );
   }
 }

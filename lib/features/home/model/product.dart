@@ -6,7 +6,7 @@ class Product {
   final String? title;
   final String? description;
   final String? url;
-  final double? price;
+  final num? price;
   final String? convertedPrice;
   final String? status;
   final String? stockStatus;
@@ -73,11 +73,12 @@ class Product {
       title: json['title'] ?? '',
       description: json['description'] ?? '',
       url: json['url'] ?? '',
-      price: (json['price']??0 as num).toDouble(),
+      price: (json['price']??0 as num),
       convertedPrice: json['converted_price'] ?? '',
       status: json['status'] ?? '',
       stockStatus: json['stock_status'] ?? '',
       userId: json['user_id'],
+
       categoryId: json['category_id'],
       cityId: json['city_id'],
       currencyId: json['currency_id'],

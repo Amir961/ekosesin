@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../icon/svg_assets.dart';
+import '../inherited/tablet_checker/app_provider.dart';
 
 class EmptyWidget extends StatelessWidget {
   final String? text;
@@ -15,7 +16,7 @@ class EmptyWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final isDark = AppProvider.of(context).isDark ;
     final backGroundColor = isDark ? Colors.black : Colors.white;
     return Container(
       padding: EdgeInsets.all(8),

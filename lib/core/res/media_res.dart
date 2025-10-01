@@ -21,6 +21,7 @@ class MediaRes {
   static const menu = '$_baseVectors/menu.svg';
   static const map = '$_baseVectors/map.svg';
   static const searchEmpty = '$_baseVectors/search_empty.svg';
+  static const logo = '$_baseVectors/logo.svg';
 
 
   static const tr = '$_baseVectors/tr.svg';

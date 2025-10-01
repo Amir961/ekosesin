@@ -14,7 +14,9 @@ import 'package:go_router/go_router.dart';
 import '../../features/auth/cubit/timer_cubit.dart';
 import '../../features/auth/cubit/update_duration_cubit.dart';
 
+import '../../features/home/bloc/details_poster_bloc.dart';
 import '../../features/home/bloc/sorted_bloc.dart';
+import '../../features/home/pages/details_posters_screen.dart';
 import '../../features/splash/presentation/pages/splash_screen.dart';
 import '../../injection_container.dart';
 
@@ -22,6 +24,8 @@ import '../../injection_container.dart';
 final GoRouter router = GoRouter (
   initialLocation: SplashScreen.routeName,
   routes: <RouteBase>[
+
+
     GoRoute(
       path: SplashScreen.routeName,
       builder: (BuildContext context, GoRouterState state) {
@@ -37,6 +41,29 @@ final GoRouter router = GoRouter (
       builder: (BuildContext context, GoRouterState state) {
         //final userData = state.extra as UserData;
         return const LoginScreen();
+      },
+    ),
+
+    GoRoute(
+      path: DetailsPostersScreen.routeName,
+      builder: (BuildContext context, GoRouterState state) {
+        final idPoster = state.extra as String;
+        //  return const HomeScreen();
+
+        return  MultiBlocProvider(
+
+          providers: [
+
+            BlocProvider<DetailsPosterBloc>(
+              create: (context) => sl<DetailsPosterBloc>(),
+            ),
+
+
+
+          ],
+          child:  DetailsPostersScreen(idPoster: idPoster,),
+        );
+
       },
     ),
 

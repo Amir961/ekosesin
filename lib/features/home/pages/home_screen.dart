@@ -11,6 +11,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/components/empty_list/empty.dart';
 import '../../../core/components/icon/svg_assets.dart';
+import '../../../core/components/inherited/tablet_checker/app_provider.dart';
+import '../../../core/components/menu_bar.dart';
 import '../../../core/res/constant.dart';
 import '../../../core/utils/temp_function.dart';
 import '../../../injection_container.dart';
@@ -21,7 +23,8 @@ import '../bloc/home_bloc.dart';
 import '../bloc/sorted_bloc.dart';
 import '../bottom_sheet/bottom_sheet_widget.dart';
 import '../bottom_sheet/header_widget.dart';
-import 'home_page.dart';
+
+final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
 class HomeScreen extends StatefulWidget {
   static const routeName = '/home-screen';
@@ -93,9 +96,30 @@ class _HomeScreenState extends State<HomeScreen> {
         .add(catBloc.GetDataEvent(variables));
   }
 
+
+
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final iconColor = isDark ? Colors.white : Colors.black;
     return Scaffold(
+
+        key: scaffoldKey,
+        endDrawer:
+
+        ClipRRect(
+          borderRadius: const BorderRadius.only(
+            topRight: Radius.circular(0),   // گوشه بالا راست
+            bottomRight: Radius.circular(0),// گوشه پایین راست
+          ),
+          child: Drawer(
+               backgroundColor: Theme.of(context).brightness == Brightness.dark? Colors.black:Colors.white ,
+              child: MenuBarWidget()
+
+
+          ),
+        ),
+
         body: SafeArea(
             child: Column(
           children: [
@@ -192,7 +216,7 @@ class _HomeScreenState extends State<HomeScreen> {
     final backGroundColor = isDark ? Colors.black : Colors.white;
     return Container(
       width: double.infinity,
-      height: 150,
+      height: 130,
       margin: EdgeInsets.symmetric(vertical: 6, horizontal: 6),
       decoration: BoxDecoration(
         color: backGroundColor,
@@ -200,11 +224,14 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       child: Row(
         children: [
-          CachedNetworkImage(
-              width: 150,
-              height: 150,
-              fit: BoxFit.fill,
-              imageUrl: getImageUrl()),
+          ClipRRect(
+            borderRadius:  BorderRadius.only(topRight: Radius.circular(AppProvider.of(context).isRightToLeft?radiusContainer:0),bottomRight: Radius.circular(AppProvider.of(context).isRightToLeft?radiusContainer:0),topLeft: Radius.circular(!AppProvider.of(context).isRightToLeft?radiusContainer:0),bottomLeft: Radius.circular(!AppProvider.of(context).isRightToLeft?radiusContainer:0)),
+            child: CachedNetworkImage(
+                width: 130,
+                height: 130,
+                fit: BoxFit.fill,
+                imageUrl: getImageUrl()),
+          ),
           Expanded(
               child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12),
@@ -241,21 +268,23 @@ class _HomeScreenState extends State<HomeScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
+                     MyText(
+                                           text: product.createdAt?.split('T')[0] ?? '',
+                                           fontSize: 12,
+                                         ),
+                    SizedBox(width: 4,),
                     Expanded(
-                        child: MyText(
-                      text: product.createdAt?.split('T')[0] ?? '',
-                      fontSize: 12,
-                    )),
-                    Container(
-                      padding: EdgeInsets.symmetric(horizontal: 7, vertical: 5),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.green[200]),
-                      child: Center(
-                          child: MyText(
-                        text: product.category?.translateTitle() ?? '',
-                        fontSize: 11,
-                      )),
+                      child: Container(
+                        padding: EdgeInsets.symmetric(horizontal: 7, vertical: 5),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.green[200]),
+                        child: Center(
+                            child: MyText(
+                          text: product.category?.translateTitle() ?? '',
+                          fontSize: 11,
+                        )),
+                      ),
                     )
                   ],
                 ),
@@ -354,8 +383,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                     children: [
                                       MyText(
                                         text: getTitleSorted(item.index),
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold,
+                                        fontSize: 13,
+                                        fontWeight: FontWeight.normal,
                                         overflow: TextOverflow.ellipsis,
                                       ),
                                     ],
@@ -375,7 +404,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     buttonStyleData: ButtonStyleData(
                       height: 40,
-                      width: 120,
+                      width: 140,
                       padding: const EdgeInsets.only(left: 10, right: 10),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(radius),
@@ -388,7 +417,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     dropdownStyleData: DropdownStyleData(
                       maxHeight: 150,
-                      width: 120,
+                      width: 140,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(radius),
                         color: Theme.of(context).canvasColor,
@@ -411,6 +440,9 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       );
+
+
+
 }
 
 class SortedClass {

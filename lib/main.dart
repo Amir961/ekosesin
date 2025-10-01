@@ -88,7 +88,7 @@ void main() async{
 
                   child: MaterialApp.router(
 
-                    themeMode: ThemeMode.dark,
+                    themeMode: themeState.theme.theme,
 
 
                     title: 'Ekosesin',

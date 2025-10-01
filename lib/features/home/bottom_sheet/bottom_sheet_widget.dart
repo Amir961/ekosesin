@@ -1,6 +1,7 @@
 
 
 import 'package:fare/core/components/dialog/dialog_manager.dart';
+import 'package:fare/core/components/inherited/tablet_checker/app_provider.dart';
 import 'package:fare/core/components/text/text.dart';
 import 'package:fare/core/res/media_res.dart';
 import 'package:fare/core/utils/values.dart';
@@ -9,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../../core/components/icon/svg_assets.dart';
 import '../../../injection_container.dart';
 import '../../language/utils/strings.dart';
 
@@ -23,7 +25,7 @@ class ButtomSheetWidget extends StatefulWidget {
 class _ButtomSheetWidgetState extends State<ButtomSheetWidget> {
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final isDark = AppProvider.of(context).isDark;
     final backGroundColor = isDark ? Colors.black : Colors.white;
     return
       SizedBox(
@@ -55,12 +57,12 @@ class _ButtomSheetWidgetState extends State<ButtomSheetWidget> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          SvgPicture.asset(
-                           MediaRes.house,
+                          SvgAssets(
+                          address:  MediaRes.house,
 
 
                           ),
-                          MyText(text: Strings.of(context).home_label ,color: Colors.white,)
+                          MyText(text: Strings.of(context).home_label )
                         ],
                       )
 
@@ -76,12 +78,12 @@ class _ButtomSheetWidgetState extends State<ButtomSheetWidget> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          SvgPicture.asset(
-                            MediaRes.building,
+                          SvgAssets(
+                           address:  MediaRes.building,
 
 
                           ),
-                          MyText(text: Strings.of(context).businesses_label ,color: Colors.white,)
+                          MyText(text: Strings.of(context).businesses_label)
                         ],
                       )
 
@@ -101,12 +103,12 @@ class _ButtomSheetWidgetState extends State<ButtomSheetWidget> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          SvgPicture.asset(
-                            MediaRes.layoutGrid,
+                          SvgAssets(
+                          address:   MediaRes.layoutGrid,
 
 
                           ),
-                          MyText(text: Strings.of(context).categories_label ,color: Colors.white,)
+                          MyText(text: Strings.of(context).categories_label )
                         ],
                       )
 
@@ -122,12 +124,12 @@ class _ButtomSheetWidgetState extends State<ButtomSheetWidget> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          SvgPicture.asset(
-                            MediaRes.user,
+                          SvgAssets(
+                           address:  MediaRes.user,
 
 
                           ),
-                          MyText(text: Strings.of(context).profile_label ,color: Colors.white,)
+                          MyText(text: Strings.of(context).profile_label )
                         ],
                       )
 
@@ -162,7 +164,7 @@ class _ButtomSheetWidgetState extends State<ButtomSheetWidget> {
 
                       ),
                     ),
-                    MyText(text: Strings.of(context).register_ads_label ,color: Colors.white,)
+                    MyText(text: Strings.of(context).register_ads_label )
                   ],
                 )
 

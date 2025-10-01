@@ -19,95 +19,87 @@ class LanguageDropDownWidget extends StatelessWidget {
         builder: (context,state) {
 
 
-          return StatefulBuilder(
-              builder: (contextState, menuSetState) {
-                return   DropdownButtonHideUnderline(
+          return DropdownButtonHideUnderline(
 
-                  child: DropdownButton2<AppLanguage>(
+            child: DropdownButton2<AppLanguage>(
 
-                    isExpanded: true,
+              isExpanded: true,
 
 
 
-                    items: state.getLanguageList
-                        .map((AppLanguage item) => DropdownMenuItem<AppLanguage>(
-                      value: item,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
+              items: state.getLanguageList
+                  .map((AppLanguage item) => DropdownMenuItem<AppLanguage>(
+                value: item,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
 
-                          MyText(
-                            text: item.language.toUpperCase(),
+                    MyText(
+                      text: item.language.toUpperCase(),
 
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
 
 
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                          SizedBox(width: 10,),
-                          SvgPicture.asset(item.iconSvg,height: 18,)
-                        ],
-                      ),
-                    ))
-                        .toList(),
-                    value: state.language,
-                    onChanged: (language) {
-
-                      BlocProvider.of<AppLanguageBloc>(context)
-                          .add(SetAppLanguageEvent(tag: language?.language??''));
-
-                    },
-
-                    iconStyleData: IconStyleData(
-                      icon:  SizedBox(),
-                      iconSize: 0,
-                      iconEnabledColor: Colors.grey[800],
-                      iconDisabledColor: Colors.grey,
+                      overflow: TextOverflow.ellipsis,
                     ),
-                    buttonStyleData: ButtonStyleData(
-                      height: 40,
-                      width: 70,
-                      padding: const EdgeInsets.only(left: 10, right: 10),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(radius),
-                        border: Border.all(
-                          color: Colors.grey[600]!,
-                        ),
-                        color: Theme.of(context).canvasColor,
-                      ),
-                      elevation: 0,
-                    ),
+                    SizedBox(width: 10,),
+                    SvgPicture.asset(item.iconSvg,height: 18,)
+                  ],
+                ),
+              ))
+                  .toList(),
+              value: state.language,
+              onChanged: (language) {
 
-                    dropdownStyleData: DropdownStyleData(
-                      maxHeight: 150,
+                BlocProvider.of<AppLanguageBloc>(context)
+                    .add(SetAppLanguageEvent(tag: language?.language??''));
 
+              },
 
-                      width: 70,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(radius),
-                        color: Theme.of(context).canvasColor,
-                      ),
-                      offset: const Offset(0, 0),
-                      scrollbarTheme: ScrollbarThemeData(
-                        radius: const Radius.circular(10),
-                        thickness: MaterialStateProperty.all(6),
-                        thumbVisibility: MaterialStateProperty.all(true),
-                      ),
-                    ),
-                    menuItemStyleData:  MenuItemStyleData(
-                      height: 40,
-                      padding: EdgeInsets.only(left: 10, right: 10),
-                    ),
-
-
+              iconStyleData: IconStyleData(
+                icon:  SizedBox(),
+                iconSize: 0,
+                iconEnabledColor: Colors.grey[800],
+                iconDisabledColor: Colors.grey,
+              ),
+              buttonStyleData: ButtonStyleData(
+                height: 40,
+                width: 70,
+                padding: const EdgeInsets.only(left: 10, right: 10),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(radius),
+                  border: Border.all(
+                    color: Colors.grey[600]!,
                   ),
-                );
+                  color: Theme.of(context).canvasColor,
+                ),
+                elevation: 0,
+              ),
+
+              dropdownStyleData: DropdownStyleData(
+                maxHeight: 150,
 
 
+                width: 70,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(radius),
+                  color: Theme.of(context).canvasColor,
+                ),
+                offset: const Offset(0, 0),
+                scrollbarTheme: ScrollbarThemeData(
+                  radius: const Radius.circular(10),
+                  thickness: MaterialStateProperty.all(6),
+                  thumbVisibility: MaterialStateProperty.all(true),
+                ),
+              ),
+              menuItemStyleData:  MenuItemStyleData(
+                height: 40,
+                padding: EdgeInsets.only(left: 10, right: 10),
+              ),
 
 
-              }
+            ),
           );
 
 

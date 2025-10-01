@@ -2,6 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../inherited/tablet_checker/app_provider.dart';
+
 class SvgString extends StatelessWidget {
   final String svgString;
   final double width;
@@ -11,7 +13,7 @@ class SvgString extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final isDark = AppProvider.of(context).isDark ;
     final iconColor = isDark ? Colors.white : Colors.black;
     return  SvgPicture.string(
       svgString,

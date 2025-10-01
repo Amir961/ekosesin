@@ -19,6 +19,7 @@ import 'features/auth/bloc/auth_bloc.dart';
 import 'features/auth/cubit/timer_cubit.dart';
 import 'features/auth/cubit/update_duration_cubit.dart';
 import 'features/home/bloc/city_bloc.dart';
+import 'features/home/bloc/details_poster_bloc.dart';
 import 'features/home/bloc/home_bloc.dart';
 import 'features/home/bloc/sorted_bloc.dart';
 import 'features/language/data/data_sources/language_data_source.dart';
@@ -92,6 +93,7 @@ Future<void> init() async {
 
 
   sl.registerLazySingleton(() => HomeBloc(sl(),));
+  sl.registerLazySingleton(() => DetailsPosterBloc(sl(),));
   sl.registerLazySingleton(() => CityBloc(sl(),));
   sl.registerLazySingleton(() => CategoryBloc(sl(),));
   sl.registerLazySingleton(() => SortedBloc());

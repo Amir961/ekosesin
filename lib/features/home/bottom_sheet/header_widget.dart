@@ -1,6 +1,7 @@
 
 import 'dart:async';
 
+import 'package:fare/core/components/inherited/tablet_checker/app_provider.dart';
 import 'package:fare/core/res/media_res.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,6 +13,7 @@ import '../../../core/res/constant.dart';
 import '../../language/presentation/widget/language_drop_down_widget.dart';
 import '../../language/utils/strings.dart';
 import '../bloc/city_bloc.dart';
+import '../pages/home_screen.dart';
 import 'city_widget.dart';
 
 class HeaderWidget extends StatefulWidget {
@@ -32,7 +34,7 @@ class _HeaderWidgetState extends State<HeaderWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final isDark = AppProvider.of(context).isDark ;
     final backGroundColor = isDark ? Colors.black : Colors.white;
     return Container(
       width: double.infinity,
@@ -45,7 +47,7 @@ class _HeaderWidgetState extends State<HeaderWidget> {
         children: [
           InkWell(
             onTap: (){
-              BlocProvider.of<CityBloc>(context).add(GetDataEvent());
+              scaffoldKey.currentState?.openEndDrawer();
             },
             child: Container(
               height: 40,
@@ -82,7 +84,7 @@ class _HeaderWidgetState extends State<HeaderWidget> {
 
            )),
            SizedBox(width: 3,),
-          LanguageDropDownWidget(),
+
             CityWidget()
         ],
       ),
